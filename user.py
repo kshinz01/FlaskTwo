@@ -62,12 +62,10 @@ class UserRegister(Resource):
         # Create query
         data = User.parser.parse_args()
         query = "INSERT INTO users VALUES (NULL,?,?)"
-        cursor.execute(query, data['username'], data['password'])
+        cursor.execute(query, (data['username'], data['password']) )
 
         # DB Clean Up
         connection.commit()
         connection.close()
 
         return {"message": "User created successfully."}, 201
-
-
