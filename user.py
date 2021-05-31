@@ -59,8 +59,12 @@ class UserRegister(Resource):
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
-        # Create query
+        # Check if user exists
         data = User.parser.parse_args()
+        if User.find_by_username(data['username']):
+            return {"message":"A user with that name already exists."}, 400
+
+        # Create query
         query = "INSERT INTO users VALUES (NULL,?,?)"
         cursor.execute(query, (data['username'], data['password']) )
 
