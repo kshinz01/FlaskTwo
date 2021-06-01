@@ -4,7 +4,7 @@ from user import User
 users = [
     (1, 'ken', 'password'),
     (2, 'test', 'password'),
-    (3, 'Jose', 'password'),
+    (3, 'jose', 'password'),
     ]
 
 
@@ -27,4 +27,3 @@ for row in cursor.execute(select_query):
 # DB Clean Up
 connection.commit()
 connection.close()
-
